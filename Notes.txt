@@ -1,0 +1,146 @@
+===============================
+Freelancer Timezone Buddy (Vanilla JS) — Plan
+===============================
+ ddsfdsf
+GOAL
+- Convert client meeting times like "3am Pacific" / "5pm ET tomorrow" into Pakistan time (PKT)
+- Show AM/PM, exact date, and "time remaining" countdown
+- Save meetings locally with versioned storage + migrations (advanced JS practice)
+
+------------------------------------------------------------
+FEATURES TO INCLUDE (what it does + APIs needed)
+------------------------------------------------------------
+
+1) Timezone Converter (Core)
+- Input: time (e.g., 3:30), AM/PM, timezone (PT/ET/MT/UTC/etc), date (optional)
+- Output: Pakistan time (Asia/Karachi) with full date + AM/PM
+- Also show: source timezone time (for confirmation)
+API required:
+- No external API needed
+- Uses built-in browser Intl API: Intl.DateTimeFormat + IANA time zones
+
+2) Smart Text Parsing (Freelancer-friendly)
+- Accept phrases like:
+  - "3am pacific", "3 AM PT", "15:30 EST", "tomorrow 5pm ET", "Feb 20 2:30 PM MT"
+- Auto-detect:
+  - time, am/pm, timezone label, relative date keywords (today/tomorrow)
+- Show a parsing preview: "Interpreted as: 2026-02-12 03:00 in America/Los_Angeles"
+API required:
+- None (regex + mapping arrays)
+
+3) Countdown + Status
+- Shows:
+  - "In 6h 12m" / "Starts now" / "Already passed"
+- Live updating every second (or every 10 seconds)
+API required:
+- None (setInterval)
+
+4) Date Shift Warning
+- If converting causes date changes (e.g., meeting is next day in Pakistan), show:
+  - "⚠ This is on the next day in PKT"
+- Helps avoid missing calls
+API required:
+- None
+
+5) Saved Meetings (LocalStorage CRUD)
+- Save a conversion as a meeting:
+  - Title: "Call with John"
+  - Notes: "Discuss milestone"
+  - Source time + source timezone + computed PKT time
+- List view:
+  - Sort by soonest upcoming
+  - Filter: Upcoming / Past
+  - Delete / Edit
+API required:
+- None (localStorage)
+
+6) Storage Versioning + Migration Control (Advanced)
+- Store app data as:
+  {
+    version: 2,
+    settings: {...},
+    meetings: [...]
+  }
+- On load:
+  - If version is old, migrate to latest
+- Example migration:
+  - v1 used timezone abbreviations only (PT/ET)
+  - v2 stores IANA timezone string (America/Los_Angeles)
+API required:
+- None
+
+7) Export / Import Backup (Pro feature)
+- Export all data as JSON file
+- Import JSON file and run migrations automatically
+- Great for real-world data handling
+API required:
+- None (File API + download blob)
+
+8) Copy-to-Client Message (Freelancer UX)
+- One click generates message:
+  - "Confirmed: 3:00 AM PT = 4:00 PM PKT on Feb 12"
+- Copy button uses Clipboard API
+API required:
+- Clipboard API (navigator.clipboard.writeText) — built-in browser API
+
+9) Optional: Accurate “Now” Sync (Async/Await practice)
+- If your device clock is wrong, countdowns can be wrong.
+- Add optional “Sync time” that checks current UTC time from an API.
+- If API fails, fallback to device time.
+API required (optional):
+- WorldTimeAPI or similar:
+  - GET https://worldtimeapi.org/api/timezone/Etc/UTC
+- (Use async/await + try/catch)
+
+10) Optional: Calendar .ICS Download (Freelancer power)
+- Download an .ics file so users can import into Google/Apple calendar
+- No backend required
+API required:
+- None (generate ICS string + file download)
+
+------------------------------------------------------------
+FOLDER STRUCTURE (clean & scalable)
+------------------------------------------------------------
+
+timezone-buddy/
+  index.html
+  /assets/
+    style.css
+  /js/
+    app.js            -> bootstrap, events, app init
+    ui.js             -> render outputs, update DOM
+    parser.js         -> parse free-text input into structured data
+    timezone.js       -> conversion utilities using Intl
+    storage.js        -> localStorage CRUD, schema, migrations
+    utils.js          -> helpers (format, debounce, etc)
+  /data/
+    timezones.json    -> optional (IANA zones list for dropdown) OR build dynamically
+  /docs/
+    MIGRATIONS.md     -> your migration notes (practice)
+    ROADMAP.md        -> planned features (practice)
+
+------------------------------------------------------------
+NOTES (important for accuracy)
+------------------------------------------------------------
+
+- Use IANA timezone names internally:
+  - PT  -> America/Los_Angeles
+  - MT  -> America/Denver
+  - CT  -> America/Chicago
+  - ET  -> America/New_York
+  - UTC -> Etc/UTC
+- Intl API handles DST automatically (huge win).
+- Store all meeting times in ISO + timezone:
+  - Keep original timezone + parsed local date/time
+  - Also store computed PKT formatted string for display
+- For “time remaining”, compute using a real Date object representing the actual instant.
+
+------------------------------------------------------------
+NEXT STEP (what to build first)
+------------------------------------------------------------
+1) Build converter UI (manual selection: date + time + timezone)
+2) Add countdown + date-shift warning
+3) Add save/load meetings (localStorage v1 schema)
+4) Add version + migrations (upgrade schema to v2)
+5) Add smart parsing input
+6) Add export/import + copy-to-client + optional API time sync
