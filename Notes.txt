@@ -1,7 +1,7 @@
 ===============================
 Freelancer Timezone Buddy (Vanilla JS) — Plan
 ===============================
- ddsfdsf
+
 GOAL
 - Convert client meeting times like "3am Pacific" / "5pm ET tomorrow" into Pakistan time (PKT)
 - Show AM/PM, exact date, and "time remaining" countdown
