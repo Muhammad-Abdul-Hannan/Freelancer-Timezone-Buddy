@@ -144,3 +144,19 @@ NEXT STEP (what to build first)
 4) Add version + migrations (upgrade schema to v2)
 5) Add smart parsing input
 6) Add export/import + copy-to-client + optional API time sync
+
+
+
+======================== GitHub =========================
+Created branch for frontend work: frontend/UI
+
+
+
+======================== Styles =========================
+Use font family:
+Inter
+Weights you’ll need:
+400 (normal text)
+500 (labels)
+600 (section titles)
+700 (important highlights)

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playpen+Sans:wght@100..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Freelancer TimeZone Buddy</title>
+  </head>
+  <body>
+    <section class="main">
+      <div class="bg-img">
+        <img
+          src="./assets/images/meeting-globe.jpg"
+          alt="Business meeting globe background"
+        />
+      </div>
+
+      <div class="overlay"></div>
+
+      <div class="tagline">
+        <h1>Never Miss a Client Call Again</h1>
+        <p>Stay organized, stay professional, and stay ahead.</p>
+        <a href="#" class="cta-btn">Get Started</a>
+      </div>
+    </section>
+
+    <section class="convertor">
+      <div class="form-side">
+        <form action="">
+          <div class="input">
+            <label for="date">Meeting Date </label>
+            <input type="date" />
+          </div>
+          <div class="input">
+            <label for="time">Meeting Time</label>
+            <input type="time" />
+          </div>
+          <div class="input">
+            <label for="timezone">Client TimeZone</label>
+            <select name="timezone" id="">
+              <option value="pt">PT (America/Los_Angeles)</option>
+              <option value="mt">MT (America/Denver)</option>
+              <option value="mt">MT (America/Denver)</option>
+              <option value="ct">CT (America/Chicago)</option>
+              <option value="et">ET (America/New_York)</option>
+              <option value="utc">UTC</option>
+            </select>
+          </div>
+          <div class="input">
+            <label for="timezone">Your TimeZone</label>
+            <select name="timezone" id="">
+              <option value="pt">PT (America/Los_Angeles)</option>
+              <option value="mt">MT (America/Denver)</option>
+              <option value="mt">MT (America/Denver)</option>
+              <option value="ct">CT (America/Chicago)</option>
+              <option value="et">ET (America/New_York)</option>
+              <option value="utc">UTC</option>
+            </select>
+          </div>
+
+          <button type="submit" class="inputbtn">Convert</button>
+        </form>
+      </div>
+      <div class="result-side">
+        <div>
+          <div>
+            <span>Client Time: </span>
+            <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+          </div>
+          <div>
+            <span>Your Time: </span>
+            <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+          </div>
+          <div>
+            <span>Warning</span>
+            <span>Conversion not possible etc.</span>
+          </div>
+          <div>
+            <span>Countdown: </span>
+            <span>3 days 5 hours 10 mints Remaining</span>
+          </div>
+        </div>
+        <button class="inputbtn">Save this meeting.</button>
+      </div>
+    </section>
+  </body>
+</html>
+
+
+
+<!-- Section 3 — Saved Meetings List
+
+Empty container.
+Will later show:
+
+Title
+
+PKT time
+
+Countdown
+
+Delete button -->
