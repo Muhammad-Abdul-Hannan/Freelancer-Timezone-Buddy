@@ -294,7 +294,7 @@ form option:checked {
   margin: 2% 0;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 420px));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 350px));
   gap: 20px;
 }
 

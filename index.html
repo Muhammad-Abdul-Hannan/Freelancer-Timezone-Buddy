@@ -101,51 +101,21 @@
           </button>
         </form>
       </div>
-
-      <!-- RESULT AREA (example structure; you can style it how you want) -->
-      <!-- <section id="result" class="result-card" hidden>
-        <h3>Conversion</h3>
-
-        <div id="parsed-preview" class="muted"></div>
-
-        <div class="result-grid">
-          <div>
-            <div class="label">From (Client)</div>
-            <div id="from-output" class="value"></div>
-          </div>
-
-          <div>
-            <div class="label">To (You)</div>
-            <div id="to-output" class="value"></div>
-          </div>
-        </div>
-
-        <div id="date-shift-warning" class="warning" hidden>
-          ⚠ Date changed after conversion.
-        </div>
-
-        <div id="countdown" class="countdown" hidden></div>
-      </section> -->
-      <div class="result-side">
+      <div class="result-side" id="result-side">
         <div>
           <div>
             <span>Client Time: </span>
-            <span id="client-time-output"></span>
+            <span id="client-time-output">Converted client time will be shown here.</span>
           </div>
 
           <div>
             <span>Your Time: </span>
-            <span id="your-time-output"></span>
+            <span id="your-time-output">Converted your time will be shown here.</span>
           </div>
-
-          <!-- <div>
-            <span>Warning: </span>
-            <span id="warning-output"></span>
-          </div> -->
 
           <div>
             <span>Countdown: </span>
-            <span id="countdown-output"></span>
+            <span id="countdown-output">Remaining time will be shown here.</span>
           </div>
         </div>
 
@@ -153,37 +123,15 @@
       </div>
     </section>
 
-    <section class="meeting-cards" id="meeting-cards">
-      <div class="card" id="card">
-        <h3>Data Extraction Project</h3>
-        <h4>John Doe <span> - Upwork</span></h4>
-        <p class="client-time">
-          <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
-        </p>
-        <p class="my-time">
-          <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
-        </p>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-          quae facilis est!
-        </p>
-        <button>⏳</button>
-        <!-- <button>✅</button> -->
-        <button>🗑️</button>
-      </div>
-    </section>
+    <section class="meeting-cards" id="meeting-cards"></section>
 
     <div class="dialog-container" id="dialog">
       <div class="dialog card">
         <p class="client-time">
-          <span id="dialog-client-time"
-            >Friday, February 13, 2026, at 08:52 PM PKT</span
-          >
+          <span id="dialog-client-time"></span>
         </p>
         <p class="my-time">
-          <span id="dialog-my-time"
-            >Friday, February 13, 2026, at 08:52 PM PKT</span
-          >
+          <span id="dialog-my-time"></span>
         </p>
         <span class="close" id="close">&times;</span>
         <div class="input">
