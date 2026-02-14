@@ -18,7 +18,7 @@
     <title>Freelancer TimeZone Buddy</title>
   </head>
   <body>
-    <section class="main">
+    <!-- <section class="main">
       <div class="bg-img">
         <img
           src="./assets/images/meeting-globe.jpg"
@@ -33,81 +33,195 @@
         <p>Stay organized, stay professional, and stay ahead.</p>
         <a href="#" class="cta-btn">Get Started</a>
       </div>
-    </section>
+    </section> -->
 
     <section class="convertor">
       <div class="form-side">
-        <form action="">
+        <form id="convert-form" autocomplete="off">
           <div class="input">
-            <label for="date">Meeting Date </label>
-            <input type="date" />
-          </div>
-          <div class="input">
-            <label for="time">Meeting Time</label>
-            <input type="time" />
-          </div>
-          <div class="input">
-            <label for="timezone">Client TimeZone</label>
-            <select name="timezone" id="">
-              <option value="pt">PT (America/Los_Angeles)</option>
-              <option value="mt">MT (America/Denver)</option>
-              <option value="mt">MT (America/Denver)</option>
-              <option value="ct">CT (America/Chicago)</option>
-              <option value="et">ET (America/New_York)</option>
-              <option value="utc">UTC</option>
-            </select>
-          </div>
-          <div class="input">
-            <label for="timezone">Your TimeZone</label>
-            <select name="timezone" id="">
-              <option value="pt">PT (America/Los_Angeles)</option>
-              <option value="mt">MT (America/Denver)</option>
-              <option value="mt">MT (America/Denver)</option>
-              <option value="ct">CT (America/Chicago)</option>
-              <option value="et">ET (America/New_York)</option>
-              <option value="utc">UTC</option>
-            </select>
+            <label for="meeting-date">Meeting Date</label>
+            <input id="meeting-date" name="meetingDate" type="date" required />
           </div>
 
-          <button type="submit" class="inputbtn">Convert</button>
+          <div class="input">
+            <label for="meeting-time">Meeting Time</label>
+            <input id="meeting-time" name="meetingTime" type="time" required />
+          </div>
+
+          <div class="input">
+            <label for="from-tz">Client Timezone</label>
+            <small class="hint">Type city/region name (IANA timezone)</small>
+            <input
+              id="from-tz"
+              name="fromTz"
+              type="text"
+              list="tz-list"
+              placeholder="e.g., America/New_York"
+              required
+            />
+          </div>
+
+          <div class="input">
+            <label for="to-tz">Your Timezone</label>
+            <input
+              id="to-tz"
+              name="toTz"
+              type="text"
+              list="tz-list"
+              placeholder="e.g., Asia/Karachi"
+              required
+            />
+          </div>
+
+          <!-- World Timezones will be filled into this datalist -->
+          <datalist id="tz-list">
+            <!-- Common timezones (pre-filled for quick use) -->
+            <option value="Etc/UTC"></option>
+
+            <option value="America/Los_Angeles"></option>
+            <option value="America/Denver"></option>
+            <option value="America/Chicago"></option>
+            <option value="America/New_York"></option>
+
+            <option value="Europe/London"></option>
+            <option value="Europe/Paris"></option>
+            <option value="Europe/Berlin"></option>
+
+            <option value="Asia/Dubai"></option>
+            <option value="Asia/Karachi"></option>
+            <option value="Asia/Kolkata"></option>
+            <option value="Asia/Singapore"></option>
+            <option value="Asia/Tokyo"></option>
+
+            <option value="Australia/Sydney"></option>
+          </datalist>
+
+          <button type="submit" class="inputbtn" id="convert-btn">
+            Convert
+          </button>
         </form>
       </div>
+
+      <!-- RESULT AREA (example structure; you can style it how you want) -->
+      <!-- <section id="result" class="result-card" hidden>
+        <h3>Conversion</h3>
+
+        <div id="parsed-preview" class="muted"></div>
+
+        <div class="result-grid">
+          <div>
+            <div class="label">From (Client)</div>
+            <div id="from-output" class="value"></div>
+          </div>
+
+          <div>
+            <div class="label">To (You)</div>
+            <div id="to-output" class="value"></div>
+          </div>
+        </div>
+
+        <div id="date-shift-warning" class="warning" hidden>
+          ⚠ Date changed after conversion.
+        </div>
+
+        <div id="countdown" class="countdown" hidden></div>
+      </section> -->
       <div class="result-side">
         <div>
           <div>
             <span>Client Time: </span>
-            <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+            <span id="client-time-output"></span>
           </div>
+
           <div>
             <span>Your Time: </span>
-            <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+            <span id="your-time-output"></span>
           </div>
-          <div>
-            <span>Warning</span>
-            <span>Conversion not possible etc.</span>
-          </div>
+
+          <!-- <div>
+            <span>Warning: </span>
+            <span id="warning-output"></span>
+          </div> -->
+
           <div>
             <span>Countdown: </span>
-            <span>3 days 5 hours 10 mints Remaining</span>
+            <span id="countdown-output"></span>
           </div>
         </div>
-        <button class="inputbtn">Save this meeting.</button>
+
+        <button class="inputbtn" id="save-meeting">Save this meeting.</button>
       </div>
     </section>
+
+    <section class="meeting-cards" id="meeting-cards">
+      <div class="card" id="card">
+        <h3>Data Extraction Project</h3>
+        <h4>John Doe <span> - Upwork</span></h4>
+        <p class="client-time">
+          <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+        </p>
+        <p class="my-time">
+          <span>Friday, February 13, 2026, at 08:52 PM PKT</span>
+        </p>
+        <p class="description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+          quae facilis est!
+        </p>
+        <button>⏳</button>
+        <!-- <button>✅</button> -->
+        <button>🗑️</button>
+      </div>
+    </section>
+
+    <div class="dialog-container" id="dialog">
+      <div class="dialog card">
+        <p class="client-time">
+          <span id="dialog-client-time"
+            >Friday, February 13, 2026, at 08:52 PM PKT</span
+          >
+        </p>
+        <p class="my-time">
+          <span id="dialog-my-time"
+            >Friday, February 13, 2026, at 08:52 PM PKT</span
+          >
+        </p>
+        <span class="close" id="close">&times;</span>
+        <div class="input">
+          <input
+            type="text"
+            id="meeting-title"
+            placeholder="Meeting Title"
+            required
+          />
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            id="client-name"
+            placeholder="Client Name"
+            required
+          />
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            id="platform"
+            placeholder="Platform e.g Upwork, LinkedIn"
+            required
+          />
+        </div>
+        <div class="input">
+          <textarea
+            name="description"
+            id="meeting-desc"
+            placeholder="Write meeting description like notes, topics to discuss etc."
+            required
+          ></textarea>
+        </div>
+        <button class="inputbtn" id="meeting-scheduled">Save Meeting</button>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
   </body>
 </html>
-
-
-
-<!-- Section 3 — Saved Meetings List
-
-Empty container.
-Will later show:
-
-Title
-
-PKT time
-
-Countdown
-
-Delete button -->
