@@ -10,25 +10,51 @@
 | H1         | 2.5rem+  | */
 
 /* ================== Color Pallete ================== */
-
+/* ================== THEME TOKENS ================== */
 :root {
+  /* Surfaces */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --card: rgba(15, 23, 42, 0.04);
+
+  /* Text */
+  --text: #0f172a;
+  --muted: #475569;
+  --text-on-dark: #ffffff;
+
+  /* Borders / rings */
+  --border: #e2e8f0;
+  --ring: rgba(37, 99, 235, 0.18);
+
+  /* Brand / accents */
   --primary: #1e293b;
   --primary-accent: #2563eb;
-  --bg: #f8fafc;
-  --card: rgba(0, 0, 0, 0.05);
-  --bg-text: #ffffff;
-  --primary-text: #0f172a;
-  --secondary-text: #475569;
-  --border: #e2e8f0;
+
+  /* Status */
   --warning: #f59e0b;
-  --danger: #ef4444; /* for delete buttons */
+  --danger: #ef4444;
+
+  color-scheme: light;
 }
 
 :root[data-theme="dark"] {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #f1f5f9;
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --card: rgba(148, 163, 184, 0.10);
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --text-on-dark: #0b1220;
+
+  --border: rgba(148, 163, 184, 0.22);
+  --ring: rgba(96, 165, 250, 0.24);
+
+  --primary: #e5e7eb;
+  --primary-accent: #60a5fa;
+
+  color-scheme: dark;
 }
+
 
 * {
   margin: 0;
@@ -44,63 +70,81 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: var(--bg);
+  color: var(--text);
 }
-input, textarea {
+input,
+textarea {
   outline: none;
   padding: 12px;
   border: 1px solid var(--border);
   border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
 }
 input[type="submit"],
 .inputbtn {
   width: 100%;
   margin-top: 32px;
   padding: 12px;
-
   font-size: 14px;
   font-weight: 600;
 
-  color: #ffffff;
+  color: var(--text-on-dark);
   background: var(--primary);
 
-  border: none;
-  border-radius: 4px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-html * {
-  transition: all 0.2s ease-in-out;
+input[type="submit"]:hover,
+.inputbtn:hover {
+  filter: brightness(1.05);
 }
+
+input[type="submit"]:active,
+.inputbtn:active {
+  transform: translateY(1px);
+}
+
+
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
 
 /* ======== Select Option ======== */
 
 /* ================== Select Styling ================== */
 
 form select {
-  width: 80%; /* match your inputs */
+  width: 80%;
   outline: none;
-  padding: 12px 44px 12px 12px; /* extra right space for arrow */
+  padding: 12px 44px 12px 12px;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background-color: var(--card);
-  color: var(--primary-text);
+  background-color: var(--surface);
+  color: var(--text);
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.2;
   cursor: pointer;
-
-  /* remove default arrow */
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+}
 
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+form select:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px var(--ring);
 }
 
 /* Custom dropdown arrow */
@@ -188,6 +232,7 @@ form option:checked {
 .tagline {
   max-width: 800px;
   padding: 1rem;
+  color: #ffff;
 }
 
 /* Heading */
@@ -224,15 +269,21 @@ form option:checked {
 
 /* ================== Convertor Section ================== */
 
-.convertor {
+.convertor{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.convertor .content {
   width: 96%;
   min-height: 80vh;
   margin: 4% 0;
   padding: 2%;
   border-radius: 8px;
-  outline: 0.3px solid var(--border);
   outline-offset: 4px;
-  background-color: var(--bg);
+  background-color: var(--surface);
+  outline: 1px solid var(--border);
   display: flex;
   align-items: stretch; /* important */
   justify-content: space-between;
@@ -246,8 +297,8 @@ form option:checked {
   display: flex;
   flex-direction: column;
 }
-.convertor .form-side .hint{
-    font-size: 8px;
+.convertor .form-side .hint {
+  font-size: 8px;
 }
 .convertor .result-side > div {
   height: 60%;
@@ -303,6 +354,7 @@ form option:checked {
   border-radius: 8px;
   background-color: var(--card);
   outline: 1px solid var(--border);
+  color: var(--text);
   outline-offset: 3px;
 }
 .meeting-cards .card:hover {
@@ -313,8 +365,11 @@ form option:checked {
   border: none;
   cursor: pointer;
 }
+.meeting-cards .card button{
+  background: transparent;
+}
 .card h4 {
-  color: var(--secondary-text);
+  color: var(--muted);
 }
 .card h4 span {
   font-size: 11px;
@@ -338,7 +393,7 @@ form option:checked {
   left: 0;
   top: 0;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.55);
   display: none;
 }
 .dialog {
@@ -347,7 +402,9 @@ form option:checked {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--bg);
+  background-color: var(--surface);
+  color: var(--text);
+  outline: 1px solid var(--border);
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -361,28 +418,116 @@ form option:checked {
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:50%; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
 }
 
-.close{
-    position: absolute;
-    right: 1.5%;
-    top: 1.5%;
-    cursor: pointer;
+.close {
+  position: absolute;
+  right: 1.5%;
+  top: 1.5%;
+  cursor: pointer;
 }
 
-.dialog input{
-    width: 100%;
+.dialog input {
+  width: 100%;
 }
 
-.dialog .input textarea{
-    width: 100%;
-    height: 110px;
-    resize: none;
+.dialog .input textarea {
+  width: 100%;
+  height: 110px;
+  resize: none;
+}
+
+
+/* ===================== Dark / Light Mode ==================== */
+
+.theme-toggle {
+  /* position: relative; */
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 64px;
+  height: 32px;
+
+  background: var(--border);
+  border: none;
+  border-radius: 999px;
+
+  cursor: pointer;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+/* sliding knob */
+.theme-toggle .thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: 26px;
+  height: 26px;
+
+  background: var(--card);
+  border-radius: 50%;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+/* icons */
+.theme-toggle .icon {
+  font-size: 14px;
+  width: 26px;
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 🌙 Dark active */
+:root[data-theme="dark"] .theme-toggle {
+  /* background: var(--primary); */
+}
+
+:root[data-theme="dark"] .theme-toggle .thumb {
+  transform: translateX(32px);
+}
+
+.theme-toggle:hover {
+  opacity: 0.9;
+}
+
+/* =========== Responsive ============= */
+
+@media (max-width: 600px) {
+  .convertor .content {
+    flex-direction: column;
+  }
+  .dialog {
+    width: 96%;
+  }
 }

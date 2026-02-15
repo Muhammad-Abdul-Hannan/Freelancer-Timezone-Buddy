@@ -18,6 +18,11 @@
     <title>Freelancer TimeZone Buddy</title>
   </head>
   <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+      <span class="thumb"></span>
+    </button>
     <section class="main">
       <div class="bg-img">
         <img
@@ -36,90 +41,108 @@
     </section>
 
     <section class="convertor" id="convertor">
-      <div class="form-side">
-        <form id="convert-form" autocomplete="off">
-          <div class="input">
-            <label for="meeting-date">Meeting Date</label>
-            <input id="meeting-date" name="meetingDate" type="date" required />
-          </div>
+      <div class="content">
+        <div class="form-side">
+          <form id="convert-form" autocomplete="off">
+            <div class="input">
+              <label for="meeting-date">Meeting Date</label>
+              <input
+                id="meeting-date"
+                name="meetingDate"
+                type="date"
+                required
+              />
+            </div>
 
-          <div class="input">
-            <label for="meeting-time">Meeting Time</label>
-            <input id="meeting-time" name="meetingTime" type="time" required />
-          </div>
+            <div class="input">
+              <label for="meeting-time">Meeting Time</label>
+              <input
+                id="meeting-time"
+                name="meetingTime"
+                type="time"
+                required
+              />
+            </div>
 
-          <div class="input">
-            <label for="from-tz">Client Timezone</label>
-            <small class="hint">Type city/region name (IANA timezone)</small>
-            <input
-              id="from-tz"
-              name="fromTz"
-              type="text"
-              list="tz-list"
-              placeholder="e.g., America/New_York"
-              required
-            />
-          </div>
+            <div class="input">
+              <label for="from-tz">Client Timezone</label>
+              <small class="hint">Type city/region name (IANA timezone)</small>
+              <input
+                id="from-tz"
+                name="fromTz"
+                type="text"
+                list="tz-list"
+                placeholder="e.g., America/New_York"
+                required
+              />
+            </div>
 
-          <div class="input">
-            <label for="to-tz">Your Timezone</label>
-            <input
-              id="to-tz"
-              name="toTz"
-              type="text"
-              list="tz-list"
-              placeholder="e.g., Asia/Karachi"
-              required
-            />
-          </div>
+            <div class="input">
+              <label for="to-tz">Your Timezone</label>
+              <input
+                id="to-tz"
+                name="toTz"
+                type="text"
+                list="tz-list"
+                placeholder="e.g., Asia/Karachi"
+                required
+              />
+            </div>
 
-          <!-- World Timezones will be filled into this datalist -->
-          <datalist id="tz-list">
-            <!-- Common timezones (pre-filled for quick use) -->
-            <option value="Etc/UTC"></option>
+            <!-- World Timezones will be filled into this datalist -->
+            <datalist id="tz-list">
+              <!-- Common timezones (pre-filled for quick use) -->
+              <option value="Etc/UTC"></option>
 
-            <option value="America/Los_Angeles"></option>
-            <option value="America/Denver"></option>
-            <option value="America/Chicago"></option>
-            <option value="America/New_York"></option>
+              <option value="America/Los_Angeles"></option>
+              <option value="America/Denver"></option>
+              <option value="America/Chicago"></option>
+              <option value="America/New_York"></option>
 
-            <option value="Europe/London"></option>
-            <option value="Europe/Paris"></option>
-            <option value="Europe/Berlin"></option>
+              <option value="Europe/London"></option>
+              <option value="Europe/Paris"></option>
+              <option value="Europe/Berlin"></option>
 
-            <option value="Asia/Dubai"></option>
-            <option value="Asia/Karachi"></option>
-            <option value="Asia/Kolkata"></option>
-            <option value="Asia/Singapore"></option>
-            <option value="Asia/Tokyo"></option>
+              <option value="Asia/Dubai"></option>
+              <option value="Asia/Karachi"></option>
+              <option value="Asia/Kolkata"></option>
+              <option value="Asia/Singapore"></option>
+              <option value="Asia/Tokyo"></option>
 
-            <option value="Australia/Sydney"></option>
-          </datalist>
+              <option value="Australia/Sydney"></option>
+            </datalist>
 
-          <button type="submit" class="inputbtn" id="convert-btn">
-            Convert
-          </button>
-        </form>
-      </div>
-      <div class="result-side" id="result-side">
-        <div>
-          <div>
-            <span>Client Time: </span>
-            <span id="client-time-output">Converted client time will be shown here.</span>
-          </div>
-
-          <div>
-            <span>Your Time: </span>
-            <span id="your-time-output">Converted your time will be shown here.</span>
-          </div>
-
-          <div>
-            <span>Countdown: </span>
-            <span id="countdown-output">Remaining time will be shown here.</span>
-          </div>
+            <button type="submit" class="inputbtn" id="convert-btn">
+              Convert
+            </button>
+          </form>
         </div>
+        <div class="result-side" id="result-side">
+          <div>
+            <div>
+              <span>Client Time: </span>
+              <span id="client-time-output"
+                >Converted client time will be shown here.</span
+              >
+            </div>
 
-        <button class="inputbtn" id="save-meeting">Save this meeting.</button>
+            <div>
+              <span>Your Time: </span>
+              <span id="your-time-output"
+                >Converted your time will be shown here.</span
+              >
+            </div>
+
+            <div>
+              <span>Countdown: </span>
+              <span id="countdown-output"
+                >Remaining time will be shown here.</span
+              >
+            </div>
+          </div>
+
+          <button class="inputbtn" id="save-meeting">Save this meeting.</button>
+        </div>
       </div>
     </section>
 
