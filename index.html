@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playpen+Sans:wght@100..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Freelancer TimeZone Buddy</title>
+  </head>
+  <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+      <span class="thumb"></span>
+    </button>
+    <section class="main">
+      <div class="bg-img">
+        <img
+          src="./assets/images/meeting-globe.jpg"
+          alt="Business meeting globe background"
+        />
+      </div>
+
+      <div class="overlay"></div>
+
+      <div class="tagline">
+        <h1>Never Miss a Client Call Again</h1>
+        <p>Stay organized, stay professional, and stay ahead.</p>
+        <a href="#convertor" class="cta-btn">Get Started</a>
+      </div>
+    </section>
+
+    <section class="convertor" id="convertor">
+      <div class="content">
+        <div class="form-side">
+          <form id="convert-form" autocomplete="off">
+            <div class="input">
+              <label for="meeting-date">Meeting Date</label>
+              <input
+                id="meeting-date"
+                name="meetingDate"
+                type="date"
+                required
+              />
+            </div>
+
+            <div class="input">
+              <label for="meeting-time">Meeting Time</label>
+              <input
+                id="meeting-time"
+                name="meetingTime"
+                type="time"
+                required
+              />
+            </div>
+
+            <div class="input">
+              <label for="from-tz">Client Timezone</label>
+              <small class="hint">Type city/region name (IANA timezone)</small>
+              <input
+                id="from-tz"
+                name="fromTz"
+                type="text"
+                list="tz-list"
+                placeholder="e.g., America/New_York"
+                required
+              />
+            </div>
+
+            <div class="input">
+              <label for="to-tz">Your Timezone</label>
+              <input
+                id="to-tz"
+                name="toTz"
+                type="text"
+                list="tz-list"
+                placeholder="e.g., Asia/Karachi"
+                required
+              />
+            </div>
+
+            <!-- World Timezones will be filled into this datalist -->
+            <datalist id="tz-list">
+              <!-- Common timezones (pre-filled for quick use) -->
+              <option value="Etc/UTC"></option>
+
+              <option value="America/Los_Angeles"></option>
+              <option value="America/Denver"></option>
+              <option value="America/Chicago"></option>
+              <option value="America/New_York"></option>
+
+              <option value="Europe/London"></option>
+              <option value="Europe/Paris"></option>
+              <option value="Europe/Berlin"></option>
+
+              <option value="Asia/Dubai"></option>
+              <option value="Asia/Karachi"></option>
+              <option value="Asia/Kolkata"></option>
+              <option value="Asia/Singapore"></option>
+              <option value="Asia/Tokyo"></option>
+
+              <option value="Australia/Sydney"></option>
+            </datalist>
+
+            <button type="submit" class="inputbtn" id="convert-btn">
+              Convert
+            </button>
+          </form>
+        </div>
+        <div class="result-side" id="result-side">
+          <div>
+            <div>
+              <span>Client Time: </span>
+              <span id="client-time-output"
+                >Converted client time will be shown here.</span
+              >
+            </div>
+
+            <div>
+              <span>Your Time: </span>
+              <span id="your-time-output"
+                >Converted your time will be shown here.</span
+              >
+            </div>
+
+            <div>
+              <span>Countdown: </span>
+              <span id="countdown-output"
+                >Remaining time will be shown here.</span
+              >
+            </div>
+          </div>
+
+          <button class="inputbtn" id="save-meeting">Save this meeting.</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="meeting-cards" id="meeting-cards"></section>
+
+    <div class="dialog-container" id="dialog">
+      <div class="dialog card">
+        <p class="client-time">
+          <span id="dialog-client-time"></span>
+        </p>
+        <p class="my-time">
+          <span id="dialog-my-time"></span>
+        </p>
+        <span class="close" id="close">&times;</span>
+        <div class="input">
+          <input
+            type="text"
+            id="meeting-title"
+            placeholder="Meeting Title"
+            required
+          />
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            id="client-name"
+            placeholder="Client Name"
+            required
+          />
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            id="platform"
+            placeholder="Platform e.g Upwork, LinkedIn"
+            required
+          />
+        </div>
+        <div class="input">
+          <textarea
+            name="description"
+            id="meeting-desc"
+            placeholder="Write meeting description like notes, topics to discuss etc."
+            required
+          ></textarea>
+        </div>
+        <button class="inputbtn" id="meeting-scheduled">Save Meeting</button>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
