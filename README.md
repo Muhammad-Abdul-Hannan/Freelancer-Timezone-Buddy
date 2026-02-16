@@ -10,7 +10,7 @@ Built with pure **HTML, CSS, and JavaScript**, leveraging the **Intl API** for r
 
 ## 🚀 Live Demo
 
-🔗 **[View Live Website]([YOUR_LIVE_GITHUB_LINK_HERE](https://muhammad-abdul-hannan.github.io/Freelancer-Timezone-Buddy/))**
+🔗 **[View Live Website]([https://muhammad-abdul-hannan.github.io/Freelancer-Timezone-Buddy/])**
 
 ---
 
